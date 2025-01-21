@@ -1,4 +1,4 @@
-import { createApp } from "./server.mjs";
+import { createApp } from "./server.js";
 
 const app = createApp();
 
