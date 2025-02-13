@@ -1,4 +1,7 @@
 import express from "express";
+import "dotenv/config";
+import connectDB from "./config/db.js";
+import passport from "passport";
 import cors from "cors";
 import userRouter from "./routes/user.routes.js";
 import session from "express-session";
@@ -7,6 +10,9 @@ import createError from "http-errors";
 
 export function createApp() {
   const app = express();
+  connectDB();
+
+  // ### Global Middlewares ### //
   app.use(express.json());
   app.use(cookieParser());
   app.use(
@@ -32,7 +38,7 @@ export function createApp() {
     next(createError(404));
   });
 
-  // Global Catch -  Error Middleware
+  // ### Global Catch - Erro Handler ### //
   app.use(function (err, req, res, next) {
     // render the error page
     res.status(err.status || 500);

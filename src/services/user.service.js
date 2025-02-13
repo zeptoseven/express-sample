@@ -1,20 +1,13 @@
 import { User } from "../models/user.model.js";
 import { hashPassword } from "../utils/helpers.js";
 
-export const getAllUsers = (request, response) => {
-  const users = [
-    {
-      name: "Chandler Bing",
-      position: "Employee",
-      country: "USA",
-    },
-    {
-      name: "Ross Geller",
-      position: "Manager",
-      country: "USA",
-    },
-  ];
-  return users;
+export const getAllUsers = async () => {
+  try {
+    const users = await User.find();
+    return users;
+  } catch (error) {
+    console.log("ERROR", error);
+  }
 };
 
 export const createUser = async (request) => {

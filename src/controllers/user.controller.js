@@ -1,11 +1,11 @@
 import { getAllUsers, createUser } from "../services/user.service.js";
 
-export const getAllUsersController = (req, res) => {
+export const getAllUsersController = async (req, res) => {
   try {
-    const users = getAllUsers();
+    const users = await getAllUsers();
     res.status(200).json({ success: true, data: users });
   } catch (error) {
-    res.status(500).json({ success: false, message: error.message });ß
+    res.status(500).json({ success: false, message: error.message });
   }
 };
 
